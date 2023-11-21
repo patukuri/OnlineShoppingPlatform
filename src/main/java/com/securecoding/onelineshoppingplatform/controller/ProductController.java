@@ -79,7 +79,7 @@ public class ProductController {
 		if (!userfromDB.getRole().equalsIgnoreCase("SELLER")) {
 			throw new CustomException(userfromDB.getFirstName() + "you are not authorized to Addproducts");
 		}
-		if (userfromDB.getRole().equals("SELLER")){
+		if ("SELLER".equals(userfromDB.getRole())){
 			Product product=productService.findById(productId);
 			if(product.getSellerId()!=userfromDB.getId()) {
 				throw new CustomException("you are not authorized to allowed this item as you are not the owner of this item");
@@ -99,7 +99,7 @@ public class ProductController {
     	authenticationService.authenticate(token);
 		User userfromDB = authenticationService.getUser(token);
 		
-		if (userfromDB.getRole().equals("SELLER")){
+		if ("SELLER".equals(userfromDB.getRole())){
 			Product product=productService.findById(productId);
 			if(product.getSellerId()!=userfromDB.getId()) {
 				throw new CustomException("you are not authorized to view this item as youa re not the owner of this item");
